@@ -1,0 +1,17 @@
+file /mnt/SNAKDRIVE/Music/Japanese Breakfast/Japanese Breakfast - [2021] Sable OST/02. Glider.flac
+duration 171
+position 111
+tag title Glider  (from "Sable" Original Video Game Soundtrack)
+tag tracknumber 2
+tag composer Michelle Zauner
+tag artist Japanese Breakfast
+tag label PMEDIA
+tag genre Film, Bandes originales de films
+tag albumartist Japanese Breakfast
+tag album Sable (Original Video Game Soundtrack)
+tag date 2021
+tag comment PMEDIA
+tag compilation PMEDIA
+tag lyricist PMEDIA
+tag publisher PMEDIA
+tag work PMEDIA

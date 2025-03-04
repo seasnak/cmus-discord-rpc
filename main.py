@@ -4,9 +4,10 @@ import datetime
 import time
 
 import discordrpc
+# import discord
 
 class CmusNowPlaying:
-    def __init__(self, update_interval: datetime.time = datetime.time(second=1)):
+    def __init__(self, update_interval : datetime.time = datetime.time(second=1), album_art : str = ""):
         self.tags: list[str] = []
 
         self.artist: str = ""
@@ -44,6 +45,16 @@ class CmusNowPlaying:
             elif tag_arr[0] == "file":
                 self.album_art = '/'.join(tag_arr[1].split('/')[:-1]) + '/cover.jpg'
 
+        # return {
+        #     "song": self.song,
+        #     "artist": self.artist,
+        #     "track": self.track,
+        #     "album": self.album,
+        #     "release": self.release,
+        #     "duration": self.duration,
+        #     "position": self.position,
+        #     "album art": self.album_art
+        # }
         return (self.song, self.artist, self.track, self.album, self.release, self.duration, self.position, self.album_art)
 
 
@@ -62,10 +73,12 @@ def rpc_update():
            print(f"Error getting cmus tags: {e}")
            continue
 
+        # print(f"{title}\n{artist} -- {album}\n{int(position/60):02}:{position%60:02}/{int(duration/60):02}:{duration%60:02}")
         rpc.set_activity(
             large_text = f"{title}",
             state = f"{artist} - {title}",
             details = f"{album}",
+            act_type = 2,
             ts_start = position,
             ts_end = duration,
         )
@@ -77,6 +90,6 @@ if __name__ == '__main__':
 
     cmusnp = CmusNowPlaying()
     rpc = discordrpc.RPC(app_id="1346187681024966757")
-    rpc.set_activity()
+
     rpc_update()
     sys.exit()
