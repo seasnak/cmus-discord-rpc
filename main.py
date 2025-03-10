@@ -3,8 +3,13 @@ import sys
 import datetime
 import time
 
+import deezer
 import discordrpc
+# from pypresence import Presence
 # import discord
+
+
+APP_ID = "1346187681024966757"
 
 class CmusNowPlaying:
     def __init__(self, update_interval : datetime.time = datetime.time(second=1), album_art : str = ""):
@@ -64,24 +69,42 @@ class CmusNowPlaying:
             self.tags = f.readlines()
         pass
 
-def rpc_update():
+def rpc_update(cmusnp: CmusNowPlaying, rpc: discordrpc.RPC):
+
+    now_playing : str = ""
+    start_time : int = 0
+    dzc = deezer.Client()
+    cover_sm = ""
+
     while(True):
-        time.sleep(1)
         try:
            (title, artist, track, album, release, duration, position, album_art) = cmusnp.get_tags()
         except Exception as e:
            print(f"Error getting cmus tags: {e}")
            continue
 
-        # print(f"{title}\n{artist} -- {album}\n{int(position/60):02}:{position%60:02}/{int(duration/60):02}:{duration%60:02}")
+        if(title != now_playing):
+            now_playing = title
+            start_time = int(time.time()) - position
+
+        # Get album art from Deezer
+        try:
+            cover_sm = dzc.search_albums(f"{artist} {album}")[0].cover_big
+        except Exception as e:
+            print(f"Could not find album art for song {artist} - {title}")
+            cover_sm = "jigglypuff"
+        pass
         rpc.set_activity(
             large_text = f"{title}",
-            state = f"{artist} - {title}",
-            details = f"{album}",
+            state = f"{artist} - {album}",
+            details = f"{title}",
             act_type = 2,
-            ts_start = position,
-            ts_end = duration,
+            ts_start = start_time, # why does this not work...
+            ts_end = start_time + duration,
+            # large_image = "",
+            small_image = cover_sm,
         )
+        time.sleep(5)
         pass
     pass
 
@@ -89,7 +112,7 @@ if __name__ == '__main__':
     # DEBUG -- SAMPLE USAGE
 
     cmusnp = CmusNowPlaying()
-    rpc = discordrpc.RPC(app_id="1346187681024966757")
-
-    rpc_update()
+    rpc = discordrpc.RPC(app_id=APP_ID)
+    # rpc = Presence(client_id=APP_ID)
+    rpc_update(cmusnp, rpc)
     sys.exit()
