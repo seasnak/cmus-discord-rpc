@@ -1,17 +1,12 @@
-file /mnt/SNAKDRIVE/Music/Japanese Breakfast/Japanese Breakfast - [2021] Sable OST/02. Glider.flac
-duration 171
-position 111
-tag title Glider  (from "Sable" Original Video Game Soundtrack)
-tag tracknumber 2
-tag composer Michelle Zauner
-tag artist Japanese Breakfast
-tag label PMEDIA
-tag genre Film, Bandes originales de films
-tag albumartist Japanese Breakfast
-tag album Sable (Original Video Game Soundtrack)
-tag date 2021
-tag comment PMEDIA
-tag compilation PMEDIA
-tag lyricist PMEDIA
-tag publisher PMEDIA
-tag work PMEDIA
+file /home/sasank/Music/Radiohead/Radiohead - [2007] In Rainbows (Disc 2)/05 Last Flowers.m4a
+duration 266
+position 37
+tag albumartist Radiohead
+tag discnumber 1
+tag tracknumber 5
+tag artist Radiohead
+tag album In Rainbows Disk 2
+tag date 2007
+tag genre Alternative
+tag title Last Flowers
+tag composer Colin Greenwood, Ed O'Brien, Jonny Greenwood, Phil Selway & Thom Yorke

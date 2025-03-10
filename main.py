@@ -77,6 +77,7 @@ def rpc_update(cmusnp: CmusNowPlaying, rpc: discordrpc.RPC):
     cover_sm = ""
 
     while(True):
+        time.sleep(5)
         try:
            (title, artist, track, album, release, duration, position, album_art) = cmusnp.get_tags()
         except Exception as e:
@@ -86,7 +87,8 @@ def rpc_update(cmusnp: CmusNowPlaying, rpc: discordrpc.RPC):
         if(title != now_playing):
             now_playing = title
             start_time = int(time.time()) - position
-
+        else:
+            continue
         # Get album art from Deezer
         try:
             cover_sm = dzc.search_albums(f"{artist} {album}")[0].cover_big
@@ -104,7 +106,6 @@ def rpc_update(cmusnp: CmusNowPlaying, rpc: discordrpc.RPC):
             # large_image = "",
             small_image = cover_sm,
         )
-        time.sleep(5)
         pass
     pass
 
