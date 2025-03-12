@@ -1,12 +1,10 @@
-file /home/sasank/Music/Radiohead/Radiohead - [2007] In Rainbows (Disc 2)/05 Last Flowers.m4a
-duration 266
-position 37
-tag albumartist Radiohead
-tag discnumber 1
-tag tracknumber 5
-tag artist Radiohead
-tag album In Rainbows Disk 2
-tag date 2007
-tag genre Alternative
-tag title Last Flowers
-tag composer Colin Greenwood, Ed O'Brien, Jonny Greenwood, Phil Selway & Thom Yorke
+file /home/sasank/Music/Geordie Greep/Geordie Greep - [2024] The New Sound/Geordie Greep - The New Sound - 02 Terra.mp3
+duration 258
+position 2
+tag title Terra
+tag artist Geordie Greep
+tag tracknumber 2
+tag album The New Sound
+tag comment Visit https://geordiegreep.bandcamp.com
+tag albumartist Geordie Greep
+tag date 2024
