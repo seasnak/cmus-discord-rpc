@@ -1,0 +1,11 @@
+# Virtual Environments
+cmus-venv
+
+# Supporting Files
+cmus-nowplaying.txt
+
+# Build Files
+build/
+dist/
+*.spec
+
