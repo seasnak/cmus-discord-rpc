@@ -1,10 +1,1 @@
-file /home/sasank/Music/Geordie Greep/Geordie Greep - [2024] The New Sound/Geordie Greep - The New Sound - 02 Terra.mp3
-duration 258
-position 2
-tag title Terra
-tag artist Geordie Greep
-tag tracknumber 2
-tag album The New Sound
-tag comment Visit https://geordiegreep.bandcamp.com
-tag albumartist Geordie Greep
-tag date 2024
+
