@@ -2,12 +2,10 @@ import os
 import sys
 import datetime
 import time
+import re
 
 import deezer
 import discordrpc
-# from pypresence import Presence
-# import discord
-
 
 APP_ID = "1346187681024966757"
 
@@ -50,16 +48,6 @@ class CmusNowPlaying:
             elif tag_arr[0] == "file":
                 self.album_art = '/'.join(tag_arr[1].split('/')[:-1]) + '/cover.jpg'
 
-        # return {
-        #     "song": self.song,
-        #     "artist": self.artist,
-        #     "track": self.track,
-        #     "album": self.album,
-        #     "release": self.release,
-        #     "duration": self.duration,
-        #     "position": self.position,
-        #     "album art": self.album_art
-        # }
         return (self.song, self.artist, self.track, self.album, self.release, self.duration, self.position, self.album_art)
 
 
@@ -91,14 +79,19 @@ def rpc_update(cmusnp: CmusNowPlaying, rpc: discordrpc.RPC):
             continue
         # Get album art from Deezer
         try:
-            cover_sm = dzc.search_albums(f"{artist} {album}")[0].cover_big
+            # album_trimmed = album.split('[')[0].split('(')[0] # remove suffixes (such as <Deluxe Edition>)
+            album_trimmed = re.split(r'[\[\(\<]+', album)[0]
+            cover_list = dzc.search_albums(f"{artist} {album_trimmed}")
+            print(cover_list) # DEBUG
+            cover_sm = cover_list[0].cover
         except Exception as e:
-            print(f"Could not find album art for song {artist} - {title}")
-            cover_sm = "jigglypuff"
+            print(f"Error: {e}.")
+            print(f"Could not get album art for {artist} - {album}")
+            cover_sm = "jigglypuff" # something has gone wrong if you see jigglypuff
         pass
         rpc.set_activity(
-            large_text = f"{title}",
-            state = f"{artist} - {album}",
+            large_text = f"{album}",
+            state = f"{artist}",
             details = f"{title}",
             act_type = 2,
             ts_start = start_time, # why does this not work...
